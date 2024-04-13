@@ -14,6 +14,8 @@ export class AppComponent {
   currentPage: number = 1;
   totalPages: number | null = null;
   userNotFound: boolean = false; // Add a boolean flag to track user not found
+  reposPerPageOptions: number[] = [10, 20, 50, 100]; // Define the options for repositories per page
+  reposPerPage: number = 10; // Default number of repositories per page
 
   constructor(private apiService: ApiService) {}
 
@@ -27,11 +29,13 @@ export class AppComponent {
         this.userNotFound = false; // Reset userNotFound flag when user is found
 
         this.apiService
-          .getRepos(this.githubUsername, this.currentPage, 10)
+          .getRepos(this.githubUsername, this.currentPage, this.reposPerPage) // Use the selected number of repositories per page
           .subscribe(
             (repos: any) => {
               this.repos = repos;
-              this.totalPages = Math.ceil(user.public_repos / 10);
+              this.totalPages = Math.ceil(
+                user.public_repos / this.reposPerPage
+              ); // Update total pages based on the selected repositories per page
               this.isLoading = false;
             },
             (error) => {

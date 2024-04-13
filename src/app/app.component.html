@@ -56,6 +56,21 @@
         </a>
       </p>
 
+      <div class="mt-4">
+        <!-- Select dropdown for number of repositories per page -->
+        <label for="repoPerPage">Repositories per page:</label>
+        <select
+          id="repoPerPage"
+          [(ngModel)]="reposPerPage"
+          (change)="searchUserData()"
+        >
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+
       <div *ngIf="repos && repos.length > 0" class="mt-4">
         <h3 class="text-lg font-semibold">Repositories:</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
