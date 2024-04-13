@@ -14,14 +14,19 @@
     </button>
   </div>
 
-  <div *ngIf="isLoading; else userDataSection">
-    <!-- Loading spinner -->
-    <div class="spinner"></div>
+  <div *ngIf="isLoading; else userDataSection" class="full-page-loader">
+    <!-- Skeleton loader -->
+    <div class="skeleton-user-info">
+      <div class="skeleton-avatar"></div>
+      <div class="skeleton-text"></div>
+      <div class="skeleton-text"></div>
+      <div class="skeleton-text"></div>
+      <div class="skeleton-text"></div>
+    </div>
   </div>
+
   <ng-template #userDataSection>
-    <!-- Display user data and repositories -->
     <div *ngIf="userData" class="mt-4">
-      <!-- Display user data -->
       <img
         [src]="userData.avatar_url"
         alt="User avatar"
@@ -41,7 +46,6 @@
         </a>
       </p>
 
-      <!-- Display repositories -->
       <div *ngIf="repos" class="mt-4">
         <h3 class="text-lg font-semibold">Repositories:</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
