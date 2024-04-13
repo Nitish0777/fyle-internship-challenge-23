@@ -6,12 +6,26 @@ import { ApiService } from './services/api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  constructor(
-    private apiService: ApiService
-  ) {}
+export class AppComponent implements OnInit {
+  githubUsername: string = '';
+  userData: any;
+
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+    
   }
+
+  searchUser() {
+    this.apiService.getUser(this.githubUsername).subscribe(
+      (user: any) => {
+        this.userData = user;
+        
+      },
+      (error) => {
+        console.error('Error fetching user:', error);
+      }
+    );
+  }
+
 }
