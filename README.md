@@ -1,43 +1,45 @@
-# Fyle Frontend Challenge
+# GitHub User Search
 
-## Who is this for?
+This Angular application allows users to search for GitHub users by username and view their basic information along with their repositories.
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+## Features
 
-## Why work at Fyle?
-
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
-
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
-
-## Challenge outline
-
-This challenge involves implementing application using github api. 
-
-The services that you need to use are already implemented - check out ApiService.
-
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
-
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
-
-## What happens next?
-
-You will hear back within 48 hours from us via email.
+- Search GitHub users by username.
+- View user's basic information such as avatar, username, followers, following count, public repositories, and profile URL.
+- View user's repositories with their names, descriptions, languages, and links to GitHub.
+- Pagination support for repositories listing.
 
 ## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+1. Clone the repository:
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+   ```bash
+   git clone https://github.com/Nitish0777/fyle-internship-challenge-23.git
 
-## Development server
+2. Install Dependencies:
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+   ```bash
+   npm install
 
-## Further help
+3. Start Developement App:
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+   ```bash
+   npm start
+
+## Usage
+- Enter a GitHub username in the search input field.
+- Click the "Search" button.
+- Wait for the user's information and repositories to load.
+- View the user's information and repositories.
+- Navigate through the repositories using the pagination buttons if applicable.
+
+# Technologies Used
+
+This project utilizes the following technologies:
+
+- **Angular**: A JavaScript framework for building web applications.
+- **TypeScript**: A superset of JavaScript that adds static typing and other features to the language.
+- **HTML**: Hypertext Markup Language, the standard markup language for creating web pages.
+- **SCSS**: A preprocessor scripting language that is interpreted or compiled into Cascading Style Sheets (CSS).
+- **GitHub REST API**: Allows fetching data from GitHub such as user information and repositories.
+
