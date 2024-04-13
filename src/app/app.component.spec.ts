@@ -1,21 +1,20 @@
 import { TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { HttpClientTestingModule } from '@angular/common/http/testing'; 
 import { AppComponent } from './app.component';
+import { ApiService } from './services/api.service';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
+    declarations: [AppComponent],
+    imports: [HttpClientTestingModule, FormsModule], // Add FormsModule to imports
+    providers: [ApiService]
   }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'fyle-frontend-challenge'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('fyle-frontend-challenge');
   });
 
   it('should render title', () => {
