@@ -14,37 +14,67 @@
     </button>
   </div>
 
-  <div *ngIf="userData" class="mt-4">
-    <!-- Display user data -->
-    <img
-      [src]="userData.avatar_url"
-      alt="User avatar"
-      class="w-24 h-24 rounded-full"
-    />
-    <h2 class="text-xl font-semibold">{{ userData.login }}</h2>
-    <p>Followers: {{ userData.followers }}</p>
-    <p>Following: {{ userData.following }}</p>
-    <p>Public Repos: {{ userData.public_repos }}</p>
-    <p>
-      <a
-        [href]="userData.html_url"
-        target="_blank"
-        class="text-blue-500 hover:underline hover:text-blue-600"
-      >
-        {{ userData.html_url }}
-      </a>
-    </p>
-
-    <!-- Button to fetch repositories -->
-
-    <!-- Display repositories -->
-    <div *ngIf="repos">
-      <h3 class="text-lg font-semibold mt-4">Repositories:</h3>
-      <ul>
-        <li *ngFor="let repo of repos">
-          <a [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
-        </li>
-      </ul>
-    </div>
+  <div *ngIf="isLoading; else userDataSection">
+    <!-- Loading spinner -->
+    <div class="spinner"></div>
   </div>
+  <ng-template #userDataSection>
+    <!-- Display user data and repositories -->
+    <div *ngIf="userData" class="mt-4">
+      <!-- Display user data -->
+      <img
+        [src]="userData.avatar_url"
+        alt="User avatar"
+        class="w-24 h-24 rounded-full"
+      />
+      <h2 class="text-xl font-semibold">{{ userData.login }}</h2>
+      <p>Followers: {{ userData.followers }}</p>
+      <p>Following: {{ userData.following }}</p>
+      <p>Public Repos: {{ userData.public_repos }}</p>
+      <p>
+        <a
+          [href]="userData.html_url"
+          target="_blank"
+          class="text-blue-500 hover:underline hover:text-blue-600"
+        >
+          {{ userData.html_url }}
+        </a>
+      </p>
+
+      <!-- Display repositories -->
+      <div *ngIf="repos" class="mt-4">
+        <h3 class="text-lg font-semibold">Repositories:</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div
+            *ngFor="let repo of repos"
+            class="border border-gray-300 p-4 rounded-md"
+          >
+            <h4 class="font-semibold text-lg">{{ repo.name }}</h4>
+            <p class="text-gray-600">{{ repo.description }}</p>
+            <p class="text-blue-500 hover:underline hover:text-blue-600">
+              <a [href]="repo.html_url" target="_blank">View on GitHub</a>
+            </p>
+            <p class="text-sm text-gray-500 mt-2">
+              Tech Stack: {{ repo.language }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between mb-4" *ngIf="totalPages">
+      <button
+        class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md"
+        (click)="prevPage()"
+      >
+        Previous
+      </button>
+      <span>{{ currentPage }} / {{ totalPages }}</span>
+      <button
+        class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md"
+        (click)="nextPage()"
+      >
+        Next
+      </button>
+    </div>
+  </ng-template>
 </div>
