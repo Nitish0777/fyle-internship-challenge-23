@@ -13,26 +13,18 @@ export class AppComponent {
   isLoading: boolean = false;
   currentPage: number = 1;
   totalPages: number | null = null;
+  userNotFound: boolean = false; // Add a boolean flag to track user not found
 
   constructor(private apiService: ApiService) {}
 
   searchUserData() {
-    if (!this.githubUsername) {
-      console.error('GitHub username is required.');
-      return;
-    }
-
     this.isLoading = true;
+    this.userNotFound = false; // Reset userNotFound flag before making a new search
 
     this.apiService.getUser(this.githubUsername).subscribe(
       (user: any) => {
         this.userData = user;
-
-        if (!user || !user.public_repos) {
-          console.error('User data is incomplete or missing.');
-          this.isLoading = false;
-          return;
-        }
+        this.userNotFound = false; // Reset userNotFound flag when user is found
 
         this.apiService
           .getRepos(this.githubUsername, this.currentPage, 10)
@@ -51,6 +43,7 @@ export class AppComponent {
       (error) => {
         console.error('Error fetching user:', error);
         this.isLoading = false;
+        this.userNotFound = true; // Set userNotFound flag when user is not found
       }
     );
   }
