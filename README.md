@@ -43,3 +43,28 @@ This project utilizes the following technologies:
 - **SCSS**: A preprocessor scripting language that is interpreted or compiled into Cascading Style Sheets (CSS).
 - **GitHub REST API**: Allows fetching data from GitHub such as user information and repositories.
 
+
+## Test Cases
+
+### AppComponent
+- **should create the app**: Checks if the AppComponent is created successfully.
+- **should render title in a h1 tag**: Ensures that the title of the app is rendered within a h1 tag.
+  - **Status**: FAILED
+  - **Reason for failure**: The expected text "fyle-frontend-challenge app is running!" was not found.
+
+### ApiService
+- **should be created**: Checks if the ApiService is created successfully.
+
+## How to Run Tests
+To run the unit tests for the Angular application, follow these steps:
+
+1. Navigate to the root directory of the Angular project in your terminal.
+2. Run the command `ng test` to execute all unit tests.
+3. Review the test results in the terminal to identify any failures or errors.
+
+## Fixing Failed Test Cases
+If any test cases fail, follow these steps to fix them:
+
+1. Identify the reason for the test failure by reviewing the error messages.
+2. Make necessary changes to the component, service, or test case code to address the issues.
+3. Rerun the unit tests using `ng test` to ensure that the failures have been resolved.
