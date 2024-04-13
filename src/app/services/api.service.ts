@@ -9,15 +9,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
-  // Define a cache object to store cached data
   private cache: { [key: string]: any } = {};
 
   getUser(githubUsername: string): Observable<any> {
     const url = `https://api.github.com/users/${githubUsername}`;
 
-    // Check if data is available in cache
     if (this.cache[url]) {
-      // Return cached data as an observable
       return of(this.cache[url]);
     } else {
       // Fetch data from API and cache it
