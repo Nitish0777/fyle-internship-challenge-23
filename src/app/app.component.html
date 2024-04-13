@@ -8,16 +8,43 @@
     />
     <button
       class="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600"
-      (click)="searchUser()"
+      (click)="searchUserData()"
     >
       Search
     </button>
   </div>
-  
+
   <div *ngIf="userData" class="mt-4">
+    <!-- Display user data -->
+    <img
+      [src]="userData.avatar_url"
+      alt="User avatar"
+      class="w-24 h-24 rounded-full"
+    />
     <h2 class="text-xl font-semibold">{{ userData.login }}</h2>
     <p>Followers: {{ userData.followers }}</p>
     <p>Following: {{ userData.following }}</p>
     <p>Public Repos: {{ userData.public_repos }}</p>
+    <p>
+      <a
+        [href]="userData.html_url"
+        target="_blank"
+        class="text-blue-500 hover:underline hover:text-blue-600"
+      >
+        {{ userData.html_url }}
+      </a>
+    </p>
+
+    <!-- Button to fetch repositories -->
+
+    <!-- Display repositories -->
+    <div *ngIf="repos">
+      <h3 class="text-lg font-semibold mt-4">Repositories:</h3>
+      <ul>
+        <li *ngFor="let repo of repos">
+          <a [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
