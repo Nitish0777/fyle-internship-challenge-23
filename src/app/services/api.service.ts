@@ -1,26 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs'; // Import throwError
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private httpClient: HttpClient) {}
-
   private cache: { [key: string]: any } = {};
 
+  constructor(private httpClient: HttpClient) {}
+
   getUser(githubUsername: string): Observable<any> {
+    if (!githubUsername) {
+      return throwError(() => new Error('GitHub username is required.'));
+    }
+
     const url = `https://api.github.com/users/${githubUsername}`;
 
     if (this.cache[url]) {
       return of(this.cache[url]);
     } else {
-      // Fetch data from API and cache it
       return this.httpClient.get(url).pipe(
         tap((user) => {
-          // Cache the fetched data
           this.cache[url] = user;
           console.log('User fetched successfully');
         }),
@@ -34,6 +36,10 @@ export class ApiService {
     page: number,
     perPage: number
   ): Observable<any> {
+    if (!githubUsername) {
+      return throwError(() => new Error('GitHub username is required.'));
+    }
+
     const url = `https://api.github.com/users/${githubUsername}/repos?page=${page}&per_page=${perPage}`;
 
     if (this.cache[url]) {
